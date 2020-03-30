@@ -1,0 +1,53 @@
+#############################Table for Retransmision########################
+
+SR_NO			probability(p)		 number_of_retransmissions					length_of_string	ratio
+  1			0.05					26						5			 5.2
+  2			0.10					32						5			 6.4
+  3			0.15					26						5			 5.2
+  4			0.20				   	32						5			 6.4
+  5			0.25					48						5			 9.6
+  6			0.30					43						5			 8.6
+  7			0.35					37						5			 7.4
+  8			0.40					35						5			 7.0
+  9			0.45					52						5			 10.4
+ 10			0.50				   	49						5			 9.8
+
+
+################################Message format used###########################
+
+Message body + unique footer
+ 
+
+################################Data Structures used##########################
+
+ All the tables are dynamically allocated
+
+sendBuff is constructed as an array out of  
+											struct send_msg
+											{
+												int id; // msg_footer
+												char buff[MAX_BUFF]; // msg_body
+												struct sockaddr_in addr; // ip
+											};
+
+recvBuff is constructed as an array out of  
+											struct receive_msg
+											{
+												char buff[MAX_BUFF]; // msg_body
+												struct sockaddr_in addr; // ip
+											};
+
+unACKTable is constructed as an array out of  																						
+											struct unacknowledged_msg
+											{
+												int id; // msg_footer
+												char buff[MAX_BUFF]; // msg_body
+												time_t time; // timestamp
+												struct sockaddr_in addr; // ip
+											};
+recvIDTable is constructed as an array out of  
+											struct receive_id_msg
+											{
+												int id; // msg_footer
+												struct sockaddr_in addr; // ip
+											};
